@@ -16,6 +16,12 @@ services:
 
   caddy:
     image: caddy:latest
+    healthcheck:
+      test: ["CMD", "caddy", "version"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 3
+      start_period: 30s
     container_name: caddy
     restart: unless-stopped
     network_mode: host
@@ -26,6 +32,12 @@ services:
 
   pihole:
     image: pihole/pihole:latest
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8089/admin"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
     container_name: pihole
     restart: unless-stopped
     network_mode: host
