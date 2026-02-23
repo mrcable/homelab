@@ -1,0 +1,40 @@
+services:
+  unifi:
+    image: jacobalberty/unifi:latest
+    container_name: unifi-network-application
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ./unifi/data:/unifi/data
+      - ./unifi/log:/unifi/log
+      - ./unifi/cert:/unifi/cert
+    environment:
+      - TZ=Europe/Amsterdam
+      - RUNAS_UID0=false
+      - UNIFI_UID=1000
+      - UNIFI_GID=1000
+
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+      - ./caddy/data:/data
+      - ./caddy/config:/config
+
+  pihole:
+    image: pihole/pihole:latest
+    container_name: pihole
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - FTLCONF_webserver_api_password=${PIHOLE_PASS}
+      - TZ=Europe/Amsterdam
+      - PIHOLE_DNS=1.1.1.1;8.8.8.8
+    volumes:
+      - ./pihole/etc-pihole:/etc/pihole
+      - ./pihole/etc-dnsmasq.d:/etc/dnsmasq.d
+    cap_add:
+      - NET_ADMIN

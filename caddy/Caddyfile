@@ -1,0 +1,14 @@
+unifi.internal {
+    reverse_proxy https://127.0.0.1:8443 {
+        transport http {
+            tls_insecure_skip_verify
+        }
+    }
+    tls internal
+}
+
+pihole.internal { 
+    redir / /admin
+    reverse_proxy http://127.0.0.1:8089
+    tls internal
+}

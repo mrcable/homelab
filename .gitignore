@@ -1,0 +1,5 @@
+.env
+unifi/
+caddy/data/
+caddy/config/
+pihole/
