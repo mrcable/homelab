@@ -31,5 +31,7 @@ argocd.internal {
     tls internal
 }
 
-
-
+grafana.internal {
+    reverse_proxy http://192.168.1.212
+    tls internal
+}
