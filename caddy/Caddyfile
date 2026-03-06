@@ -35,3 +35,8 @@ grafana.internal {
     reverse_proxy http://192.168.1.212:80
     tls internal
 }
+
+falco.internal {
+    reverse_proxy http://192.168.1.213:2802
+    tls internal
+}
