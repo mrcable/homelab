@@ -3,3 +3,7 @@ unifi/
 caddy/data/
 caddy/config/
 pihole/
+immich/data
+immich/postgres
+beszel/beszel_agent_data
+beszel/beszel_data

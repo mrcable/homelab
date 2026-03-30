@@ -40,3 +40,13 @@ falco.internal {
     reverse_proxy http://192.168.1.213:2802
     tls internal
 }
+
+immich.internal {
+    reverse_proxy 127.0.0.1:2283
+    tls internal
+}
+
+beszel.internal {
+    reverse_proxy 127.0.0.1:8090
+    tls internal
+}
